@@ -3,7 +3,9 @@ package com.snoopgame.application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +20,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/","/home","/order","/employee","/phone").permitAll()
+                    .antMatchers("/order/**","/phone/get","/employee/get").permitAll()
+                    .anyRequest().permitAll()
+                .and()
+                .authorizeRequests()
+                    .antMatchers("/employee","/phone","/hello","hello").hasRole("ADMIN")
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -28,6 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .permitAll();
     }
+    @Override
+    public void configure(WebSecurity web)  {
+        web.ignoring().antMatchers(HttpMethod.POST, "/order/**");
+    }
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
@@ -35,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 User.withDefaultPasswordEncoder()
                         .username("u")
                         .password("p")
-                        .roles("USER")
+                        .roles("ADMIN")
                         .build();
 
         return new InMemoryUserDetailsManager(user);

@@ -10,11 +10,12 @@ import java.util.ArrayList;
 
 @RestController
 public class EmployeeController {
-    @GetMapping ("/employee")
+    @GetMapping ("/employee/get")
     public Employees sendUsers(){
         Employee employee=new Employee(10,"Kudjo","Joestar","Jotaro");
         ArrayList<Employee>arrayList=new ArrayList<>();
         arrayList.add(employee);
+        System.out.println("\n"+"sadas"+"\n");
         return new Employees(arrayList);
     }
 }

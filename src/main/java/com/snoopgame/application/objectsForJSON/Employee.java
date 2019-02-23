@@ -1,18 +1,20 @@
 package com.snoopgame.application.objectsForJSON;
 
 public class Employee {
+
     private int id;
     private String name;
     private String surname;
+    private String middleName;
 
-       public Employee(int id, String name, String surname, String middleName) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.middleName = middleName;
+
+    public int getId() {
+        return id;
     }
 
-    private String middleName;
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -38,12 +40,10 @@ public class Employee {
         this.middleName = middleName;
     }
 
-    public int getId() {
-
-        return id;
-    }
-
-    public void setId(int id) {
+    public Employee(int id, String name, String surname, String middleName) {
         this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
     }
 }

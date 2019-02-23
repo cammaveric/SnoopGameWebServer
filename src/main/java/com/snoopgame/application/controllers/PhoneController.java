@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @RestController
 public class PhoneController {
-    @GetMapping("/phone")
+    @GetMapping("/phone/get")
     public Phones sendPhones(){
         Phone phone = new Phone(5, "iPhone 10 XXXL", "iOS 12", 1);
         ArrayList<Phone>arrayList=new ArrayList<>();

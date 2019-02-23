@@ -21,13 +21,15 @@ public class OrderController {
         String date_s = "ну и залупа";
         String date_e = "ebal v rot";
         a.add(new Order(1, employee, phone, date_s, date_e, "executed"));
-        Orders orders = new Orders(a);
-        return orders;
+        return  new Orders(a);
 
     }
     @PostMapping("/order/add")
     public String sendCommitA(@RequestBody Order order){
-        if(order.getPhone().getId()==5&&order.getEmployee().getId()==10&&order.getId()==1)return "All is working";
+        System.out.println("all is working");
+        if(order.getPhone().getId()==5&&order.getEmployee().getId()==10&&order.getId()==1) {
+            return "All is working";
+        }
         else return "something wrong";
     }
     @PostMapping("/order/update")

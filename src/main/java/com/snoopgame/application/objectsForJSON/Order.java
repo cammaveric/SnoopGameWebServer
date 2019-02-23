@@ -1,8 +1,8 @@
 package com.snoopgame.application.objectsForJSON;
 
-import java.util.Date;
 
 public class Order {
+
     private int id;
     private Employee employee;
     private Phone phone;
@@ -11,15 +11,6 @@ public class Order {
     private String status;
     public int getId() {
         return id;
-    }
-
-    public Order(int id, Employee employee, Phone phone, String date_start, String date_end, String status) {
-        this.id = id;
-        this.employee = employee;
-        this.phone = phone;
-        this.date_start = date_start;
-        this.date_end = date_end;
-        this.status = status;
     }
 
     public void setId(int id) {
@@ -63,6 +54,15 @@ public class Order {
     }
 
     public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Order(int id, Employee employee, Phone phone, String date_start, String date_end, String status) {
+        this.id = id;
+        this.employee = employee;
+        this.phone = phone;
+        this.date_start = date_start;
+        this.date_end = date_end;
         this.status = status;
     }
 }

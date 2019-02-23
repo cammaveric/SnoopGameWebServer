@@ -12,16 +12,16 @@ public class Phone {
     private int id;
     private String name;
     private int amount;
-    private int free_phone_ampunt;
+    private int free_phone_amount;
     private String firmware;
 
     public Phone() {
     }
 
-    public Phone(String name, int amount, int free_phone_ampunt, String firmware) {
+    public Phone(String name, int amount, int free_phone_amount, String firmware) {
         this.name = name;
         this.amount = amount;
-        this.free_phone_ampunt = free_phone_ampunt;
+        this.free_phone_amount = free_phone_amount;
         this.firmware = firmware;
     }
 
@@ -49,12 +49,12 @@ public class Phone {
         this.amount = amount;
     }
 
-    public int getFree_phone_ampunt() {
-        return free_phone_ampunt;
+    public int getFree_phone_amount() {
+        return free_phone_amount;
     }
 
-    public void setFree_phone_ampunt(int free_phone_ampunt) {
-        this.free_phone_ampunt = free_phone_ampunt;
+    public void setFree_phone_amount(int free_phone_amount) {
+        this.free_phone_amount = free_phone_amount;
     }
 
     public String getFirmware() {
