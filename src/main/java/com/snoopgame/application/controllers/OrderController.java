@@ -26,7 +26,6 @@ public class OrderController {
     }
     @PostMapping("/order/add")
     public String sendCommitA(@RequestBody Order order){
-        System.out.println("all is working");
         if(order.getPhone().getId()==5&&order.getEmployee().getId()==10&&order.getId()==1) {
             return "All is working";
         }

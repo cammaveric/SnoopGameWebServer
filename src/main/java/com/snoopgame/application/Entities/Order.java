@@ -1,32 +1,33 @@
 package com.snoopgame.application.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
+
 @Entity
+@Table(name = "porder")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private Employee employee;
-    private Phone phone;
     private String date_start;/*Нужно тестить какой класс*/
     private String date_end;
     private Status status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="employee_fk",referencedColumnName = "id")
+    private Employee employee;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "phone_fk",referencedColumnName = "id")
+    private Phone phone;
+    @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
+    @CollectionTable(name="order_status",joinColumns = @JoinColumn(name = "order_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Status> statuses;
+
+    public Order() {
+    }
+
     public int getId() {
         return id;
-    }
-    public Order(){
-
-    }
-    public Order(int id, Employee employee, Phone phone, String date_start, String date_end, Status status) {
-        this.id = id;
-        this.employee = employee;
-        this.phone = phone;
-        this.date_start = date_start;
-        this.date_end = date_end;
-        this.status = status;
     }
 
     public void setId(int id) {
@@ -71,6 +72,14 @@ public class Order {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Set<Status> getStatuses() {
+        return statuses;
+    }
+
+    public void setStatuses(Set<Status> statuses) {
+        this.statuses = statuses;
     }
 }
 

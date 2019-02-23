@@ -3,6 +3,7 @@ package com.snoopgame.application.Entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,12 +16,6 @@ public class Employee {
 
     }
 
-       public Employee(int id, String name, String surname, String middleName) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.middleName = middleName;
-    }
 
     public String getName() {
         return name;

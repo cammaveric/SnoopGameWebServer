@@ -1,11 +1,9 @@
 package com.snoopgame.application.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "phone")
 public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,12 +16,6 @@ public class Phone {
     public Phone() {
     }
 
-    public Phone(String name, int amount, int free_phone_amount, String firmware) {
-        this.name = name;
-        this.amount = amount;
-        this.free_phone_amount = free_phone_amount;
-        this.firmware = firmware;
-    }
 
     public int getId() {
         return id;
