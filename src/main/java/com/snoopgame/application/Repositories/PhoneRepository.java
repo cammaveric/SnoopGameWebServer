@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
 
-public interface PhoneRepository extends CrudRepository<Phone,Integer> {
+public interface PhoneRepository extends CrudRepository<Phone,Long> {
     @Query("select p from Phone p where free_phone_amount>?1")
     Iterable<Phone> findByFree_phone_amountGreaterThan(Integer Amount);
 }

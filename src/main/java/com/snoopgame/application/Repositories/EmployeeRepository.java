@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
 
-public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
+public interface EmployeeRepository extends CrudRepository<Employee,Long> {
 }
