@@ -1,3 +1,49 @@
-.info{
+.hidden_forms{
     display: none;
+    padding-top: 15px;
+}
+.all{
+    margin: 0 35%;
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    float: left;
+    text-align: center;
+    background-color: #282923;
+}
+.link{
+    float: left;
+    width: 100%;
+    padding-top: 5px;
+}
+.button2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.form_fields{
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+}
+a{
+    text-decoration: none;
+    color: #FF9125;
+}
+label{
+    color: #FF9125;
+}
+a:hover{
+    text-decoration: underline;
+}
+form{
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+}
+input {
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    padding-top: 15px;
+}
+
+h1{
+    color: #68AEDC;
 }

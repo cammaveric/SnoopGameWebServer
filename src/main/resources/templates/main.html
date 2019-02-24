@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<link rel="stylesheet" type="text/css" href="/static/style.css">
 <head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
     <title>Hello World!</title>
 </head>
-<body>
+<body class="all">
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<a href="javascript:void(0)" onclick="show_info_block(document.getElementById('d1'))" >Add employee</a>
-<a >Remove employee</a>
-<a >Add device</a>
-<a >Remove device</a>
-<a >Remove order</a>
-<a>View orders</a>
-    <div id="d1" class="info">kavo?</div>
+<a class="link" href="javascript:void(0)" onclick="show_info_block(document.getElementById('d1'))" >Add employee</a>
+<a class="link" href="javascript:void(0)" onclick="show_info_block(document.getElementById('d2'))">Remove employee</a>
+<a class="link" href="javascript:void(0)" onclick="show_info_block(document.getElementById('d3'))">Add device</a>
+<a class="link" href="javascript:void(0)" onclick="show_info_block(document.getElementById('d4'))">Remove device</a>
+<a class="link" href="javascript:void(0)" >Remove order</a>
+<a class="link" href="javascript:void(0)" >View orders</a>
+    <div id="d1" class="hidden_forms">
+        <form th:action="@{/employee/add}">
+            <div class="form_fields"><label> Employee name: <input type="text" name="name"/> </label></div>
+            <div class="form_fields"><label> Surname: <input type="text" name="surname"/> </label></div>
+            <div class="form_fields"><label> Middle name: <input type="text" name="middleName"/> </label></div>
+            <div class="form_fields"><input type="submit" value="Add"/></div>
+        </form>
+    </div>
+<div id="d2" class="hidden_forms">
+    <form th:action="@{/employee/remove}">
+        <div class="form_fields"><label> Employee name: <input type="text" name="name"/> </label></div>
+        <div class="form_fields"><label> Surname: <input type="text" name="surname"/> </label></div>
+        <div class="form_fields"><label> Middle name: <input type="text" name="middleName"/> </label></div>
+        <div class="form_fields"><input type="submit" value="Remove"/></div>
+    </form>
+</div>
+<div id="d3" class="hidden_forms">
+    <form th:action="@{/phone/add}">
+        <div class="form_fields"><label> Phone name: <input type="text" name="name"/> </label></div>
+        <div class="form_fields"><label> Firmware: <input type="text" name="firmware"/> </label></div>
+        <div class="form_fields"><label> Amount: <input type="text" name="amount"/> </label></div>
+        <div class="form_fields"><input type="submit" value="Add"/></div>
+    </form>
+</div>
+<div id="d4" class="hidden_forms">
+    <form th:action="@{/phone/remove}">
+        <div class="form_fields"><label> Phone name: <input type="text" name="name"/> </label></div>
+        <div class="form_fields"><label> Firmware: <input type="text" name="firmware"/> </label></div>
+        <div class="form_fields"><label> Amount: <input type="text" name="amount"/> </label></div>
+        <div class="form_fields"><input type="submit" value="Remove"/></div>
+    </form>
+</div>
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input class="button2" type="submit" value="Sign Out"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />﻿
 </form>
 <script type="text/javascript" src="/static/js.js"></script>
 </body>
