@@ -18,7 +18,7 @@ public class EmployeeController {
 
     @GetMapping ("/employee/get")
     public Employees sendUsers(){
-        employeeRepository.save(new Employee("sadas","wqeq","ewr[ep"));
+        //employeeRepository.save(new Employee("sadas","wqeq","ewr[ep"));
         Iterable<Employee> employees = employeeRepository.findAll();
         return new Employees(employees);
     }

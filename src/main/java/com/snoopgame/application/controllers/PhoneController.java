@@ -6,8 +6,6 @@ import com.snoopgame.application.objectsForJSON.Phones;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-
 @RestController
 public class PhoneController {
     private final PhoneRepository phoneRepository;
@@ -18,7 +16,7 @@ public class PhoneController {
 
     @GetMapping("/phone/get")
     public Phones sendPhones(){
-        Iterable<Phone> phones = phoneRepository.findAll();
+       Iterable<Phone> phones = phoneRepository.findByFree_phone_amountGreaterThan(0);
         return new Phones(phones);
     }
 }

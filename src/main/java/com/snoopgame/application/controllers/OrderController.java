@@ -29,7 +29,7 @@ public class OrderController {
                 new Date(1000L),new Date(100L),
                 new Employee("sadas","wqeq","ewr[ep"),
                 new Phone("samsung",2,2,"android 6.0"), Collections.singleton(Status.INITIATED)));*/
-        Iterable<Order> orders = orderRepository.findAll();
+        Iterable<Order> orders = orderRepository.findByStatuses(Collections.singleton(Status.INITIATED));
         return  new Orders(orders);
 
     }
