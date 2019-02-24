@@ -1,21 +1,29 @@
 package com.snoopgame.application.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "porder")
+@Table(name = "order_phone")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String date_start;/*Нужно тестить какой класс*/
-    private String date_end;
-    private Status status;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private long id;
+    @NotNull
+    private Date date_start;/*Нужно тестить какой класс*/
+    private Date date_end;
+    @NotNull
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name ="employee_fk",referencedColumnName = "id")
     private Employee employee;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "phone_fk",referencedColumnName = "id")
     private Phone phone;
     @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
@@ -26,8 +34,16 @@ public class Order {
     public Order() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public Order(@NotNull Date date_start, Date date_end, @NotNull Employee employee, @NotNull Phone phone, Set<Status> statuses) {
+        this.date_start = date_start;
+        this.date_end = date_end;
+        this.employee = employee;
+        this.phone = phone;
+        this.statuses = statuses;
     }
 
     public void setId(int id) {
@@ -50,28 +66,20 @@ public class Order {
         this.phone = phone;
     }
 
-    public String getDate_start() {
+    public Date getDate_start() {
         return date_start;
     }
 
-    public void setDate_start(String date_start) {
+    public void setDate_start(Date date_start) {
         this.date_start = date_start;
     }
 
-    public String getDate_end() {
+    public Date getDate_end() {
         return date_end;
     }
 
-    public void setDate_end(String date_end) {
+    public void setDate_end(Date date_end) {
         this.date_end = date_end;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public Set<Status> getStatuses() {

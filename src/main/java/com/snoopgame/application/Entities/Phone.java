@@ -1,23 +1,35 @@
 package com.snoopgame.application.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "phone")
 public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
+    @NotNull
     private String name;
+    @NotNull
     private int amount;
+    @NotNull
     private int free_phone_amount;
+    @NotNull
     private String firmware;
+
+    public Phone(@NotNull String name, @NotNull int amount, @NotNull int free_phone_amount, @NotNull String firmware) {
+        this.name = name;
+        this.amount = amount;
+        this.free_phone_amount = free_phone_amount;
+        this.firmware = firmware;
+    }
 
     public Phone() {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

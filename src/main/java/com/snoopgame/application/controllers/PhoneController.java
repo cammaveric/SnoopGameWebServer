@@ -1,6 +1,7 @@
 package com.snoopgame.application.controllers;
 
-import com.snoopgame.application.objectsForJSON.Phone;
+import com.snoopgame.application.Entities.Phone;
+import com.snoopgame.application.Repositories.PhoneRepository;
 import com.snoopgame.application.objectsForJSON.Phones;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,11 +10,15 @@ import java.util.ArrayList;
 
 @RestController
 public class PhoneController {
+    private final PhoneRepository phoneRepository;
+
+    public PhoneController(PhoneRepository phoneRepository) {
+        this.phoneRepository = phoneRepository;
+    }
+
     @GetMapping("/phone/get")
     public Phones sendPhones(){
-        Phone phone = new Phone(5, "iPhone 10 XXXL", "iOS 12", 1);
-        ArrayList<Phone>arrayList=new ArrayList<>();
-        arrayList.add(phone);
-        return new Phones(arrayList);
+        Iterable<Phone> phones = phoneRepository.findAll();
+        return new Phones(phones);
     }
 }

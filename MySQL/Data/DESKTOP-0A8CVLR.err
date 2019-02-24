@@ -210,3 +210,10 @@ information that should help you find out what is causing the crash.
 2019-02-20T11:44:07.835256Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file 'C:\Users\Yanly\OneDrive\Documents\GitHub\SnoopGameWebServer\DataBase\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
 2019-02-20T11:44:11.446799Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
 2019-02-20T11:44:11.572546Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.12'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2019-02-23T18:26:15.902903Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2019-02-23T18:26:15.906745Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.12) starting as process 1648
+2019-02-23T18:26:15.906946Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file 'C:\Users\Yanly\OneDrive\Documents\GitHub\SnoopGameWebServer\DataBase\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+2019-02-23T18:26:18.955114Z 0 [System] [MY-010229] [Server] Starting crash recovery...
+2019-02-23T18:26:18.957268Z 0 [System] [MY-010232] [Server] Crash recovery finished.
+2019-02-23T18:26:20.502907Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2019-02-23T18:26:20.738613Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.12'  socket: ''  port: 3306  MySQL Community Server - GPL.

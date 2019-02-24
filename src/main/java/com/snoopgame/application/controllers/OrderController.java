@@ -1,27 +1,36 @@
 package com.snoopgame.application.controllers;
 
-import com.snoopgame.application.objectsForJSON.Employee;
-import com.snoopgame.application.objectsForJSON.Order;
+import com.snoopgame.application.Entities.Employee;
+import com.snoopgame.application.Entities.Order;
+import com.snoopgame.application.Entities.Phone;
+import com.snoopgame.application.Entities.Status;
+import com.snoopgame.application.Repositories.OrderRepository;
 import com.snoopgame.application.objectsForJSON.Orders;
-import com.snoopgame.application.objectsForJSON.Phone;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @RestController
 public class OrderController {
+    private final OrderRepository orderRepository;
+
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
     @GetMapping("/order")
     public Orders sendOrders() {
-        ArrayList<Order> a = new ArrayList<>();
-        Employee employee = new Employee(1, "'jora", "asd", "asdsd");
-        Phone phone = new Phone(1, "Samsung", "Firmware", 2);
-        String date_s = "ну и залупа";
-        String date_e = "ebal v rot";
-        a.add(new Order(1, employee, phone, date_s, date_e, "executed"));
-        return  new Orders(a);
+      /*  orderRepository.save(new Order(
+                new Date(1000L),new Date(100L),
+                new Employee("sadas","wqeq","ewr[ep"),
+                new Phone("samsung",2,2,"android 6.0"), Collections.singleton(Status.INITIATED)));*/
+        Iterable<Order> orders = orderRepository.findAll();
+        return  new Orders(orders);
 
     }
     @PostMapping("/order/add")

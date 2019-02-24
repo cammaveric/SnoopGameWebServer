@@ -1,6 +1,7 @@
 package com.snoopgame.application.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -8,9 +9,12 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
+    @NotNull
     private boolean active;
+    @NotNull
     private String username;
+    @NotNull
     private String password;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -27,7 +31,7 @@ public class User {
         this.active = active;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

@@ -1,15 +1,26 @@
 package com.snoopgame.application.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
+
+    public Employee(@NotNull String name, @NotNull String surname, @NotNull String middleName) {
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+    }
+
+    @NotNull
     private String name;
+    @NotNull
     private String surname;
+    @NotNull
     private String middleName;
 
     public Employee(){
@@ -41,7 +52,7 @@ public class Employee {
         this.middleName = middleName;
     }
 
-    public int getId() {
+    public long getId() {
 
         return id;
     }

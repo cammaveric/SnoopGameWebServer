@@ -2,21 +2,23 @@ package com.snoopgame.application.objectsForJSON;
 
 
 
+import com.snoopgame.application.Entities.Order;
+
 import java.util.ArrayList;
 
 public class Orders {
-    private ArrayList<Order>orders;
+    private Iterable<Order>orders;
 
-    public ArrayList<Order> getOrders() {
+    public Iterable<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(ArrayList<Order> orders) {
+    public void setOrders(Iterable<Order> orders) {
         this.orders = orders;
     }
 
 
-    public Orders(ArrayList<Order> orders) {
+    public Orders(Iterable<Order> orders) {
 
         this.orders = orders;
     }
