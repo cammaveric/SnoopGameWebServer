@@ -30,8 +30,8 @@ public class UserController {
             model.put("message", "User exists!");
             return "registration";
         }
-        user.setActive(true);
         user.setRoles(Collections.singleton(Role.ADMIN));
+        user.setActive(true);
         userRepository.save(user);
         return "redirect:/login";
     }
