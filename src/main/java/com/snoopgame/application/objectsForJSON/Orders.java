@@ -1,26 +1,41 @@
 package com.snoopgame.application.objectsForJSON;
 
 
-
 import com.snoopgame.application.Entities.Order;
 
-import java.util.ArrayList;
-
 public class Orders {
-    private Iterable<Order>orders;
+    private Iterable<Order> androidOrders;
+    private Iterable<Order> iOSOrders;
+    private Iterable<Order> amazonOrders;
 
-    public Iterable<Order> getOrders() {
-        return orders;
+    public Orders(Iterable<Order> androidOrders, Iterable<Order> iOSOrders, Iterable<Order> amazonOrders) {
+        this.androidOrders = androidOrders;
+        this.iOSOrders = iOSOrders;
+        this.amazonOrders = amazonOrders;
     }
 
-    public void setOrders(Iterable<Order> orders) {
-        this.orders = orders;
+    public Iterable<Order> getAndroidOrders() {
+        return androidOrders;
     }
 
+    public void setAndroidOrders(Iterable<Order> androidOrders) {
+        this.androidOrders = androidOrders;
+    }
 
-    public Orders(Iterable<Order> orders) {
+    public Iterable<Order> getiOSOrders() {
+        return iOSOrders;
+    }
 
-        this.orders = orders;
+    public void setiOSOrders(Iterable<Order> iOSOrders) {
+        this.iOSOrders = iOSOrders;
+    }
+
+    public Iterable<Order> getAmazonOrders() {
+        return amazonOrders;
+    }
+
+    public void setAmazonOrders(Iterable<Order> amazonOrders) {
+        this.amazonOrders = amazonOrders;
     }
 
 }

@@ -28,10 +28,24 @@ public class OrderRestController {
         this.phoneRepository = phoneRepository;
     }
 
-    @GetMapping("/order")
-    public Orders sendOrders() {
+    @GetMapping("/order/getAll")
+    public Orders sendAllOrders() {
         Iterable<Order> orders = orderRepository.findByStatuses(Collections.singleton(Status.INITIATED));
-        return  new Orders(orders);
+        return  new Orders(orders,null,null);
+
+    }
+    @GetMapping("/order/getByFirmware")
+    public Orders sendOrders() {
+        Iterable<Order> androidOrders = orderRepository.findByPhoneInAndStatuses(
+                phoneRepository.findByFirmware_name("Android"),
+                Collections.singleton(Status.INITIATED));
+        Iterable<Order> iOSOrders=orderRepository.findByPhoneInAndStatuses(
+                phoneRepository.findByFirmware_name("iOS"),
+                Collections.singleton(Status.INITIATED));
+        Iterable<Order> amazonOrders=orderRepository.findByPhoneInAndStatuses(
+                phoneRepository.findByFirmware_name("Amazon"),
+                Collections.singleton(Status.INITIATED));
+        return  new Orders(androidOrders,iOSOrders,amazonOrders);
 
     }
     @PostMapping("/order/add")

@@ -18,12 +18,12 @@ public class Order {
     private Date date_end;
     @NotNull
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JoinColumn(name ="employee_fk",referencedColumnName = "id")
     private Employee employee;
     @NotNull
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "phone_fk",referencedColumnName = "id")
     private Phone phone;
     @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
