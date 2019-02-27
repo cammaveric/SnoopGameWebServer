@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "phone")
 public class Phone {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @NotNull
     private String name;
     @NotNull
@@ -16,20 +16,22 @@ public class Phone {
     @NotNull
     private int free_phone_amount;
     @NotNull
-    private String firmware;
+    private String firmware_name;
+    @NotNull
+    private String firmware_version;
 
-    public Phone(@NotNull String name, @NotNull int amount, @NotNull int free_phone_amount, @NotNull String firmware) {
+    public Phone(@NotNull String name, @NotNull int amount, @NotNull int free_phone_amount, @NotNull String firmware_name, @NotNull String firmware_version) {
         this.name = name;
         this.amount = amount;
         this.free_phone_amount = free_phone_amount;
-        this.firmware = firmware;
+        this.firmware_name = firmware_name;
+        this.firmware_version = firmware_version;
     }
 
     public Phone() {
     }
 
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -61,11 +63,19 @@ public class Phone {
         this.free_phone_amount = free_phone_amount;
     }
 
-    public String getFirmware() {
-        return firmware;
+    public String getFirmware_name() {
+        return firmware_name;
     }
 
-    public void setFirmware(String firmware) {
-        this.firmware = firmware;
+    public void setFirmware_name(String firmware_name) {
+        this.firmware_name = firmware_name;
+    }
+
+    public String getFirmware_version() {
+        return firmware_version;
+    }
+
+    public void setFirmware_version(String firmware_version) {
+        this.firmware_version = firmware_version;
     }
 }

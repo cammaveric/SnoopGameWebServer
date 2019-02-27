@@ -9,6 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 
-public interface OrderRepository extends CrudRepository<Order,Long> {
+public interface OrderRepository extends CrudRepository<Order,Integer> {
     Iterable<Order> findByStatuses(Set<Status>statuses);
 }

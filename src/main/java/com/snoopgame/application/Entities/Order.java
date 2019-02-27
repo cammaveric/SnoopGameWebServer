@@ -11,19 +11,19 @@ import java.util.Set;
 @Table(name = "order_phone")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @NotNull
-    private Date date_start;/*Нужно тестить какой класс*/
+    private Date date_start;
     private Date date_end;
     @NotNull
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name ="employee_fk",referencedColumnName = "id")
     private Employee employee;
     @NotNull
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "phone_fk",referencedColumnName = "id")
     private Phone phone;
     @ElementCollection(targetClass = Status.class, fetch = FetchType.EAGER)
@@ -34,7 +34,7 @@ public class Order {
     public Order() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

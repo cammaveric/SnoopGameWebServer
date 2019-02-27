@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     public Employee(@NotNull String name, @NotNull String surname, @NotNull String middleName) {
         this.name = name;
@@ -52,7 +52,7 @@ public class Employee {
         this.middleName = middleName;
     }
 
-    public long getId() {
+    public int getId() {
 
         return id;
     }

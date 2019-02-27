@@ -8,8 +8,8 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @NotNull
     private boolean active;
     @NotNull
@@ -31,7 +31,7 @@ public class User {
         this.active = active;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
