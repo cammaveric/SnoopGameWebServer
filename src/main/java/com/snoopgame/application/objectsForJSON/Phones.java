@@ -2,8 +2,6 @@ package com.snoopgame.application.objectsForJSON;
 
 import com.snoopgame.application.Entities.Phone;
 
-import java.util.ArrayList;
-
 public class Phones {
     private Iterable<Phone> androidPhones;
     private Iterable<Phone> iOSPhones;
@@ -31,6 +29,9 @@ public class Phones {
 
     public void setAmazonPhones(Iterable<Phone> amazonPhones) {
         this.amazonPhones = amazonPhones;
+    }
+
+    public Phones() {
     }
 
     public Phones(Iterable<Phone> androidPhones, Iterable<Phone> iOSPhones, Iterable<Phone> amazonPhones) {

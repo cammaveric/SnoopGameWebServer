@@ -31,13 +31,6 @@ public class Phone {
     public Phone() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -67,12 +60,21 @@ public class Phone {
         return firmware_name;
     }
 
-    public void setFirmware_name(String firmware_name) {
-        this.firmware_name = firmware_name;
-    }
 
     public String getFirmware_version() {
         return firmware_version;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirmware_name(String firmware_name) {
+        this.firmware_name = firmware_name;
     }
 
     public void setFirmware_version(String firmware_version) {

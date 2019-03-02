@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Collections;
-import java.util.Optional;
 
 @RestController
 public class OrderRestController {
@@ -31,43 +32,55 @@ public class OrderRestController {
     @GetMapping("/order/getAll")
     public Orders sendAllOrders() {
         Iterable<Order> orders = orderRepository.findByStatuses(Collections.singleton(Status.INITIATED));
-        return  new Orders(orders,null,null);
+        return new Orders(orders, null, null);
 
     }
+
     @GetMapping("/order/getByFirmware")
     public Orders sendOrders() {
         Iterable<Order> androidOrders = orderRepository.findByPhoneInAndStatuses(
                 phoneRepository.findByFirmware_name("Android"),
                 Collections.singleton(Status.INITIATED));
-        Iterable<Order> iOSOrders=orderRepository.findByPhoneInAndStatuses(
+        Iterable<Order> iOSOrders = orderRepository.findByPhoneInAndStatuses(
                 phoneRepository.findByFirmware_name("iOS"),
                 Collections.singleton(Status.INITIATED));
-        Iterable<Order> amazonOrders=orderRepository.findByPhoneInAndStatuses(
+        Iterable<Order> amazonOrders = orderRepository.findByPhoneInAndStatuses(
                 phoneRepository.findByFirmware_name("Amazon"),
                 Collections.singleton(Status.INITIATED));
-        return  new Orders(androidOrders,iOSOrders,amazonOrders);
+        return new Orders(androidOrders, iOSOrders, amazonOrders);
 
     }
+
     @PostMapping("/order/add")
-    public void addOrder(@RequestBody Order order){
-        Phone phone=phoneRepository.findById(order.getPhone().getId()).get();
+    public void addOrder(@RequestBody Order order) {
+        Phone phone = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(
+                order.getPhone().getName(), order.getPhone().getFirmware_name(),
+                order.getPhone().getFirmware_version());
         orderRepository.save(new Order(
-                new Date(System.currentTimeMillis()),null,
-                employeeRepository.findById(order.getEmployee().getId()).get(),
+                new Date(System.currentTimeMillis()).toString() + " " + new Time(System.currentTimeMillis()).toString(), null,
+                employeeRepository.findByNameAndSurnameAndMiddleName(
+                        order.getEmployee().getName(), order.getEmployee().getSurname(),
+                        order.getEmployee().getMiddleName()),
                 phone, Collections.singleton(Status.INITIATED)));
-        phone.setFree_phone_amount(phone.getFree_phone_amount()-1);
+        phone.setFree_phone_amount(phone.getFree_phone_amount() - 1);
         phoneRepository.save(phone);
 
     }
+
     @PostMapping("/order/update")
-    public void updateOrder(@RequestBody Order order){
-        Optional<Order> orderFromDb = orderRepository.findById(order.getId());
-        orderFromDb.get().getStatuses().removeAll(Collections.singleton(Status.INITIATED));
-        orderFromDb.get().getStatuses().addAll(Collections.singleton(Status.EXECUTED));
-        orderFromDb.get().setDate_end(new Date(System.currentTimeMillis()));
-        Optional<Phone>phone = phoneRepository.findById(orderFromDb.get().getPhone().getId());
-        phone.get().setFree_phone_amount(phone.get().getFree_phone_amount()+1);
-        orderRepository.save(orderFromDb.get());
-        phoneRepository.save(phone.get());
+    public void updateOrder(@RequestBody Order order) {
+        Phone phone = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(
+                order.getPhone().getName(), order.getPhone().getFirmware_name(),
+                order.getPhone().getFirmware_version());
+        Order orderFromDb = orderRepository.findByEmployeeAndPhoneAndDate_start(
+                employeeRepository.findByNameAndSurnameAndMiddleName(
+                        order.getEmployee().getName(), order.getEmployee().getSurname(),
+                        order.getEmployee().getMiddleName()), phone, order.getDate_start());
+        orderFromDb.getStatuses().removeAll(Collections.singleton(Status.INITIATED));
+        orderFromDb.getStatuses().addAll(Collections.singleton(Status.EXECUTED));
+        orderFromDb.setDate_end(new Timestamp(System.currentTimeMillis()));
+        phone.setFree_phone_amount(phone.getFree_phone_amount() + 1);
+        orderRepository.save(orderFromDb);
+        phoneRepository.save(phone);
     }
 }

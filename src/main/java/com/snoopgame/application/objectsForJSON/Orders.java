@@ -38,4 +38,6 @@ public class Orders {
         this.amazonOrders = amazonOrders;
     }
 
+    public Orders() {
+    }
 }

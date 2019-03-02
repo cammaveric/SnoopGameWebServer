@@ -9,13 +9,6 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    public Employee(@NotNull String name, @NotNull String surname, @NotNull String middleName) {
-        this.name = name;
-        this.surname = surname;
-        this.middleName = middleName;
-    }
-
     @NotNull
     private String name;
     @NotNull
@@ -23,10 +16,31 @@ public class Employee {
     @NotNull
     private String middleName;
 
-    public Employee(){
+    public Employee(@NotNull String name, @NotNull String surname, @NotNull String middleName) {
+        this.name = name;
+        this.surname = surname;
+        this.middleName = middleName;
+    }
+
+    public Employee() {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
 
     public String getName() {
         return name;
@@ -40,24 +54,9 @@ public class Employee {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public String getMiddleName() {
         return middleName;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public int getId() {
-
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

@@ -20,15 +20,8 @@ public class User {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
     public User() {
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public int getId() {
@@ -39,8 +32,8 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public boolean isActive() {
+        return active;
     }
 
     public void setUsername(String username) {
@@ -58,6 +51,16 @@ public class User {
     public Set<Role> getRoles() {
         return roles;
     }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;

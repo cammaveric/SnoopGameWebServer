@@ -7,7 +7,6 @@
 </head>
 <body class="all">
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<p th:text="${message}"></p>
 <a class="link" href="javascript:void(0)" onclick="show_info_block(document.getElementById('d1'))" >Add employee</a>
 <div id="d1" class="hidden_forms">
     <form th:action="@{/employee/add}" method="post">

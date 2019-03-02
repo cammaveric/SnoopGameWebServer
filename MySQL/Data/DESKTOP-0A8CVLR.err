@@ -224,3 +224,10 @@ information that should help you find out what is causing the crash.
 2019-02-24T21:42:47.479398Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file 'C:\Users\Yanly\OneDrive\Documents\GitHub\SnoopGameWebServer\DataBase\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
 2019-02-24T21:43:53.093622Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
 2019-02-24T21:43:56.099825Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.12'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2019-03-01T15:45:33.346565Z 0 [System] [MY-013105] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Normal shutdown.
+2019-03-01T15:45:59.657810Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.12)  MySQL Community Server - GPL.
+2019-03-01T15:47:51.125404Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2019-03-01T15:47:51.152957Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.12) starting as process 3664
+2019-03-01T15:47:51.161579Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file 'C:\Users\Yanly\OneDrive\Documents\GitHub\SnoopGameWebServer\DataBase\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+2019-03-01T15:49:00.164775Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2019-03-01T15:49:02.248966Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.12'  socket: ''  port: 3306  MySQL Community Server - GPL.
