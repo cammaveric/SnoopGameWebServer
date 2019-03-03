@@ -4,8 +4,9 @@ import com.snoopgame.application.Entities.Phone;
 import com.snoopgame.application.Repositories.PhoneRepository;
 import com.snoopgame.application.objectsForJSON.Phones;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+@RequestMapping("/phone")
 @RestController
 public class PhoneRestController {
     private final PhoneRepository phoneRepository;
@@ -14,13 +15,13 @@ public class PhoneRestController {
         this.phoneRepository = phoneRepository;
     }
 
-    @GetMapping("/phone/getAll")
+    @GetMapping("/getAll")
     public Phones sendAllPhones() {
         Iterable<Phone> phones = phoneRepository.findByFree_phone_amountGreaterThan(0);
         return new Phones(phones, null, null);
     }
 
-    @GetMapping("/phone/getByFirmware")
+    @GetMapping("/getByFirmware")
     public Phones sendPhones() {
         Iterable<Phone> androidPhones = phoneRepository
                 .findByFirmware_nameAndFree_phone_amountGreaterThan("Android", 0);

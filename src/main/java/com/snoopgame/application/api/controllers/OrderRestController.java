@@ -7,16 +7,13 @@ import com.snoopgame.application.Repositories.EmployeeRepository;
 import com.snoopgame.application.Repositories.OrderRepository;
 import com.snoopgame.application.Repositories.PhoneRepository;
 import com.snoopgame.application.objectsForJSON.Orders;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collections;
-
+@RequestMapping("/order")
 @RestController
 public class OrderRestController {
     private final OrderRepository orderRepository;
@@ -29,14 +26,14 @@ public class OrderRestController {
         this.phoneRepository = phoneRepository;
     }
 
-    @GetMapping("/order/getAll")
+    @GetMapping("/getAll")
     public Orders sendAllOrders() {
         Iterable<Order> orders = orderRepository.findByStatuses(Collections.singleton(Status.INITIATED));
         return new Orders(orders, null, null);
 
     }
 
-    @GetMapping("/order/getByFirmware")
+    @GetMapping("/getByFirmware")
     public Orders sendOrders() {
         Iterable<Order> androidOrders = orderRepository.findByPhoneInAndStatuses(
                 phoneRepository.findByFirmware_name("Android"),
@@ -51,7 +48,7 @@ public class OrderRestController {
 
     }
 
-    @PostMapping("/order/add")
+    @PostMapping("/add")
     public void addOrder(@RequestBody Order order) {
         Phone phone = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(
                 order.getPhone().getName(), order.getPhone().getFirmware_name(),
@@ -67,7 +64,7 @@ public class OrderRestController {
 
     }
 
-    @PostMapping("/order/update")
+    @PostMapping("/update")
     public void updateOrder(@RequestBody Order order) {
         Phone phone = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(
                 order.getPhone().getName(), order.getPhone().getFirmware_name(),

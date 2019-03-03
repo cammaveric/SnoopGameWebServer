@@ -58,5 +58,7 @@ public class Employee {
     public String getMiddleName() {
         return middleName;
     }
-
+    public String getFio(){
+        return surname+" "+name+" "+middleName;
+    }
 }

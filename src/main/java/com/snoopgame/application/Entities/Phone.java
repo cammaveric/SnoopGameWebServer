@@ -80,4 +80,7 @@ public class Phone {
     public void setFirmware_version(String firmware_version) {
         this.firmware_version = firmware_version;
     }
+    public String getFulName(){
+        return name+" "+firmware_name+" "+firmware_version;
+    }
 }

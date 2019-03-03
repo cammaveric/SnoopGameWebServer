@@ -7,11 +7,13 @@ import com.snoopgame.application.Repositories.OrderRepository;
 import com.snoopgame.application.Repositories.PhoneRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
+@RequestMapping("/phone")
 @Controller
 public class PhoneController {
     private final PhoneRepository phoneRepository;
@@ -22,7 +24,7 @@ public class PhoneController {
         this.orderRepository = orderRepository;
     }
 
-    @PostMapping("phone/add")
+    @PostMapping("/add")
     public String addPhone(Phone phone, Map<String, Object> model) {
         Phone phoneFromDb = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(phone.getName(),
                 phone.getFirmware_name(), phone.getFirmware_version());
@@ -31,27 +33,27 @@ public class PhoneController {
             phoneFromDb.setAmount(phoneFromDb.getAmount() + phone.getAmount());
             phoneFromDb.setFree_phone_amount(phoneFromDb.getFree_phone_amount() + phone.getFree_phone_amount());
             phoneRepository.save(phoneFromDb);
-            return "phone/add";
+            return "error";
         }
         phone.setFree_phone_amount(phone.getAmount());
         phoneRepository.save(phone);
         return "redirect:/main";
     }
 
-    @PostMapping("phone/remove")
+    @PostMapping("/remove")
     public String removePhone(Phone phone, Map<String, Object> model) {
         Phone phoneFromDb = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(phone.getName(),
                 phone.getFirmware_name(), phone.getFirmware_version());
         if (phoneFromDb == null) {
             model.put("message", "Phone not exists!");
-            return "phone/remove";
+            return "error";
         }
         if (phone.getAmount() == phoneFromDb.getAmount()) {
             ArrayList<Order> orders = (ArrayList<Order>) orderRepository.findByPhoneAndStatuses(phoneFromDb,
                     Collections.singleton(Status.INITIATED));
             if (orders.size() != 0) {
                 model.put("message", "Not executed orders contains this phone!");
-                return "phone/remove";
+                return "error";
             }
             orderRepository.deleteAll(orderRepository.findByPhone(phoneFromDb));
             phoneRepository.delete(phoneFromDb);
