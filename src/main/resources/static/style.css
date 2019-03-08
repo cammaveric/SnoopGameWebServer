@@ -1,24 +1,22 @@
-.hidden_forms{
-    display: none;
-    padding-top: 15px;
+img{
+    object-fit: cover;
 }
 .all{
     font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
     font-size: 2vw;
-    float: left;
     text-align: center;
     background-color: #282923;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 .link{
-    float: left;
-    width: 100%;
-    padding-top: 5px;
+  padding-top: 5px;
 }
 .button2:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .form_fields{
-    float: left;
     width: 100%;
     padding-top: 15px;
 }
@@ -27,6 +25,7 @@ table{
     border-collapse: collapse;
     font-size: 1.4vw;
 }
+
 tr{
     font-style: italic;
     text-align: center;
@@ -34,6 +33,26 @@ tr{
 td{
     border:solid 7px;
 }
+.input{
+    width: 100%;
+    border: none;
+}
+.th_centered{
+    display: flex;
+    justify-content: space-around;
+    width: 55%;
+    margin: 0 auto;
+}
+.th_name{
+    float: left;
+    margin-right: 10px;
+}
+.order_by{
+    width: 1.1vw;
+    float: left;
+    margin-right: 10px;
+}
+
 #table tr:nth-child(even){background-color:#D8D8D8;}
 #table tr:nth-child(odd){background-color:#EEE2E2;}
 
@@ -45,8 +64,7 @@ td{
     text-align: center;
     background-color: #F92447;
     color: white;
-    border:solid 7px;
-    border-color: #000000;
+    border:solid 7px #000000;
 }
 
 a{

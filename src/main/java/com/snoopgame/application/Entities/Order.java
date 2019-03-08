@@ -15,7 +15,7 @@ public class Order {
     private int id;
     @NotNull
     private String date_start;
-    private Timestamp date_end;
+    private String date_end;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_fk", referencedColumnName = "id")
@@ -44,7 +44,7 @@ public class Order {
         this.date_start = date_start;
     }
 
-    public Timestamp getDate_end() {
+    public String getDate_end() {
         return date_end;
     }
 
@@ -60,7 +60,7 @@ public class Order {
         this.statuses = statuses;
     }
 
-    public Order(@NotNull String date_start, Timestamp date_end, Employee employee, Phone phone, Set<Status> statuses) {
+    public Order(@NotNull String date_start, String  date_end, Employee employee, Phone phone, Set<Status> statuses) {
         this.date_start = date_start;
         this.date_end = date_end;
         this.employee = employee;
@@ -84,7 +84,7 @@ public class Order {
     }
 
 
-    public void setDate_end(Timestamp date_end) {
+    public void setDate_end(String date_end) {
         this.date_end = date_end;
     }
 

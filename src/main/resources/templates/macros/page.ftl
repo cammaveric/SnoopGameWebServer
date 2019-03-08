@@ -11,9 +11,3 @@
     </html>
 </#macro>
 
-<#macro hidden_blocks id name>
-    <a class="link" href="javascript:void(0)" onclick="show_info_block(document.getElementById('${id}'))" >${name}</a>
-    <div id="${id}" class="hidden_forms">
-    <#nested >
-    </div>
-</#macro>

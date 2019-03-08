@@ -4,6 +4,7 @@ import com.snoopgame.application.Entities.Role;
 import com.snoopgame.application.Entities.User;
 import com.snoopgame.application.Repositories.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +27,11 @@ public class UserController {
     }
 
     @PostMapping
-    public String addUser(User user, Map<String, Object> model) {
+    public String addUser(User user, Model model) {
         User userFromDb = userRepository.findByUsername(user.getUsername());
         if (userFromDb != null) {
-            model.put("message", "User exists!");
-            return "error";
+            model.addAttribute("message", "User exists!");
+            return "registration";
         }
         user.setRoles(Collections.singleton(Role.ADMIN));
         user.setActive(true);

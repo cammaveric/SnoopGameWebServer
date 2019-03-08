@@ -13,7 +13,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collections;
-@RequestMapping("/order")
+@RequestMapping("/api/order")
 @RestController
 public class OrderRestController {
     private final OrderRepository orderRepository;
@@ -75,7 +75,7 @@ public class OrderRestController {
                         order.getEmployee().getMiddleName()), phone, order.getDate_start());
         orderFromDb.getStatuses().removeAll(Collections.singleton(Status.INITIATED));
         orderFromDb.getStatuses().addAll(Collections.singleton(Status.EXECUTED));
-        orderFromDb.setDate_end(new Timestamp(System.currentTimeMillis()));
+        orderFromDb.setDate_end(new Date(System.currentTimeMillis()).toString() + " " + new Time(System.currentTimeMillis()).toString());
         phone.setFree_phone_amount(phone.getFree_phone_amount() + 1);
         orderRepository.save(orderFromDb);
         phoneRepository.save(phone);

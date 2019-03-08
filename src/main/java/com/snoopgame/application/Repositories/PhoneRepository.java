@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PhoneRepository extends CrudRepository<Phone, Integer> {
+    @Query("select p from Phone p order by p.firmware_name asc")
+    Iterable<Phone> findAllOrderByFirmware_nameAsc();
     @Query("select p from Phone p where p.firmware_name=?1")
     Iterable<Phone> findByFirmware_name(String firmware);
 

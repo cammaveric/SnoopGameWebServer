@@ -24,12 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+
                 .authorizeRequests()
-                .antMatchers("/order/**", "/phone/**", "/employee/get", "/static/**").permitAll()
+                .antMatchers("/api/**", "/static/**").permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/main", "/registration").hasRole("ADMIN")
+                .antMatchers("/main","/order/**","/phone/**","employee/**","/registration").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -42,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(HttpMethod.POST, "/order/**");
+        web.ignoring().antMatchers(HttpMethod.POST, "/api/order/**");
     }
 
     @Override

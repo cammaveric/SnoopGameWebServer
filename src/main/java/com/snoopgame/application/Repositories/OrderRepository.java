@@ -10,6 +10,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Set;
 
 public interface OrderRepository extends CrudRepository<Order, Integer> {
+    @Query("select o from Order o order by o.id desc")
+    Iterable<Order> findAllOrderByIdDesc();
+
     Iterable<Order> findByStatuses(Set<Status> statuses);
 
     Iterable<Order> findByEmployee(Employee employee);
