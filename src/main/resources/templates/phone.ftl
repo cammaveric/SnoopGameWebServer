@@ -35,7 +35,14 @@
     </thead>
     <tbody>
     <tr>
-<td></td>
+        <td>Введите</td>
+        <td>количество </td>
+        <td>удаляемых </td>
+        <td>телeфонов: </td>
+    <td>
+        <input class="input" id="amount_delete" type="text" name="amount"/>
+    </td>
+        <td></td>
     </tr>
     <tr>
         <td>
