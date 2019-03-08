@@ -40,7 +40,7 @@
         <td>удаляемых </td>
         <td>телeфонов: </td>
     <td>
-        <input class="input" id="amount_delete" type="text" name="amount"/>
+        <input class="input" id="delete_amount" type="text" name="delete_amount"/>
     </td>
         <td></td>
     </tr>
@@ -85,13 +85,16 @@
         ${phone.free_phone_amount}
         </td>
     <td>
-    <a href="/phone/remove/${phone.id}">REMOVE</a>
+    <a class="link" onclick="postRequest('/phone/remove',
+            {id: ${phone.id},
+            delete_amount:document.getElementById('delete_amount').value,
+            _csrf:document.getElementById('_csrf').value});">Remove</a>
     </td>
         </tr>
     </#list>
     </tbody>
     </table>
-    <form style="display:none;">
+    <form >
     <input id="_csrf" type="hidden" name="_csrf" value="${_csrf.token}" />﻿
     </form>
 <script type="text/javascript" src="/static/js.js"></script>

@@ -7,14 +7,12 @@ import com.snoopgame.application.Repositories.OrderRepository;
 import com.snoopgame.application.Repositories.PhoneRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 @RequestMapping("/phone")
 @Controller
@@ -43,23 +41,23 @@ public class PhoneController {
         return "redirect:/phone";
     }
 
-    @GetMapping("/remove/{phone}")
-    public String removePhone(@PathVariable Phone phone, Model model) {
-        Phone phoneFromDb = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(phone.getName(),
-                phone.getFirmware_name(), phone.getFirmware_version());
-        if (phone.getAmount() == phoneFromDb.getAmount()) {
-            ArrayList<Order> orders = (ArrayList<Order>) orderRepository.findByPhoneAndStatuses(phoneFromDb,
+    @PostMapping("/remove")
+    public String removePhone(@RequestParam Integer id, @RequestParam String delete_amount, Model model) {
+        Optional<Phone> phoneFromDb = phoneRepository.findById(id);
+        if (delete_amount.isEmpty()) {
+            ArrayList<Order> orders = (ArrayList<Order>) orderRepository.findByPhoneAndStatuses(phoneFromDb.get(),
                     Collections.singleton(Status.INITIATED));
             if (orders.size() != 0) {
                 model.addAttribute("message", "Not executed orders contains this phone!");
                 return "error";
             }
-            orderRepository.deleteAll(orderRepository.findByPhone(phoneFromDb));
-            phoneRepository.delete(phoneFromDb);
+            orderRepository.deleteAll(orderRepository.findByPhone(phoneFromDb.get()));
+            phoneRepository.delete(phoneFromDb.get());
+            return "redirect:/phone";
         }
-        phoneFromDb.setAmount(phoneFromDb.getAmount() - phone.getAmount());
-        phoneFromDb.setFree_phone_amount(phoneFromDb.getFree_phone_amount() - phone.getFree_phone_amount());
-        phoneRepository.save(phoneFromDb);
+        phoneFromDb.get().setAmount(phoneFromDb.get().getAmount() - Integer.parseInt(delete_amount));
+        phoneFromDb.get().setFree_phone_amount(phoneFromDb.get().getFree_phone_amount() - Integer.parseInt(delete_amount));
+        phoneRepository.save(phoneFromDb.get());
         return "redirect:/phone";
     }
     @GetMapping
