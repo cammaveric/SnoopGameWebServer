@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "order_phone")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotNull
     private String date_start;

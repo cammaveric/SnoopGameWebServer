@@ -34,16 +34,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Введите</td>
-        <td>количество </td>
-        <td>удаляемых </td>
-        <td>телeфонов: </td>
-    <td>
-        <input class="input" id="delete_amount" type="text" name="delete_amount"/>
-    </td>
-        <td></td>
-    </tr>
+
     <tr>
         <td>
             <input class="input" id="name" type="text" name="name"/>
@@ -66,6 +57,16 @@
             amount:document.getElementById('amount').value,
             _csrf:document.getElementById('_csrf').value});"> Add</a>
         </td>
+    </tr>
+    <tr>
+        <td>Введите</td>
+        <td>количество </td>
+        <td>удаляемых </td>
+        <td>телeфонов: </td>
+        <td>
+            <input class="input" id="delete_amount" type="text" name="delete_amount"/>
+        </td>
+        <td></td>
     </tr>
     <#list phones as phone>
         <tr>
