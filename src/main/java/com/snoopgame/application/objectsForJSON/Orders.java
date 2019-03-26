@@ -2,42 +2,17 @@ package com.snoopgame.application.objectsForJSON;
 
 
 import com.snoopgame.application.Entities.Order;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Orders {
+    @NonNull
     private Iterable<Order> androidOrders;
+    @NonNull
     private Iterable<Order> iOSOrders;
+    @NonNull
     private Iterable<Order> amazonOrders;
-
-    public Orders(Iterable<Order> androidOrders, Iterable<Order> iOSOrders, Iterable<Order> amazonOrders) {
-        this.androidOrders = androidOrders;
-        this.iOSOrders = iOSOrders;
-        this.amazonOrders = amazonOrders;
-    }
-
-    public Iterable<Order> getAndroidOrders() {
-        return androidOrders;
-    }
-
-    public void setAndroidOrders(Iterable<Order> androidOrders) {
-        this.androidOrders = androidOrders;
-    }
-
-    public Iterable<Order> getiOSOrders() {
-        return iOSOrders;
-    }
-
-    public void setiOSOrders(Iterable<Order> iOSOrders) {
-        this.iOSOrders = iOSOrders;
-    }
-
-    public Iterable<Order> getAmazonOrders() {
-        return amazonOrders;
-    }
-
-    public void setAmazonOrders(Iterable<Order> amazonOrders) {
-        this.amazonOrders = amazonOrders;
-    }
-
-    public Orders() {
-    }
 }
