@@ -9,26 +9,21 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name = "phone")
 public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotNull
-    @NonNull
     private String name;
     @NotNull
-    @NonNull
     private int amount;
     @NotNull
-    @NonNull
     private int free_phone_amount;
     @NotNull
-    @NonNull
     private String firmware_name;
     @NotNull
-    @NonNull
     private String firmware_version;
 
     public String getFullName(){

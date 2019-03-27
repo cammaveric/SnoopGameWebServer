@@ -2,22 +2,15 @@ package com.snoopgame.application.objectsForJSON;
 
 
 import com.snoopgame.application.Entities.Employee;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employees {
     Iterable<Employee> employees;
-
-    public Iterable<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Iterable<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public Employees() {
-    }
-
-    public Employees(Iterable<Employee> employees) {
-        this.employees = employees;
-    }
 }

@@ -7,12 +7,9 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Orders {
-    @NonNull
     private Iterable<Order> androidOrders;
-    @NonNull
-    private Iterable<Order> iOSOrders;
-    @NonNull
+    private Iterable<Order> iosOrders;
     private Iterable<Order> amazonOrders;
 }

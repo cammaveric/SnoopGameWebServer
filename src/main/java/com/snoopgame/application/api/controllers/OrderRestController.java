@@ -29,7 +29,7 @@ public class OrderRestController {
     @GetMapping("/getAll")
     public Orders sendAllOrders() {
         Iterable<Order> orders = orderRepository.findByStatuses(Collections.singleton(Status.INITIATED));
-        return new Orders(orders, null, null);
+        return new Orders(orders,null,null);
 
     }
 
@@ -54,7 +54,7 @@ public class OrderRestController {
                 order.getPhone().getName(), order.getPhone().getFirmware_name(),
                 order.getPhone().getFirmware_version());
         orderRepository.save(new Order(
-                new Date(System.currentTimeMillis()).toString() + " " + new Time(System.currentTimeMillis()).toString(), null,
+                new Date(System.currentTimeMillis()).toString() + " " + new Time(System.currentTimeMillis()).toString(),
                 employeeRepository.findByNameAndSurnameAndMiddleName(
                         order.getEmployee().getName(), order.getEmployee().getSurname(),
                         order.getEmployee().getMiddleName()),

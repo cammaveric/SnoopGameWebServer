@@ -56,7 +56,7 @@
         ${order.employee.getFio()}
         </td>
         <td>
-        ${order.phone.getFulName()}
+        ${order.phone.getFullName()}
         </td>
         <td>
         <#list order.statuses as status>${status}</#list>

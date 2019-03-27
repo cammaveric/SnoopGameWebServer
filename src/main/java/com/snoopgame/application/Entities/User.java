@@ -10,24 +10,21 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotNull
-    @NonNull
     private boolean active;
     @NotNull
-    @NonNull
     private String username;
     @NotNull
-    @NonNull
     private String password;
+    @NotNull
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    @NonNull
     private Set<Role> roles;
 }

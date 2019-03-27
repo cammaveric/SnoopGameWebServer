@@ -6,13 +6,10 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Phones {
-    @NonNull
     private Iterable<Phone> androidPhones;
-    @NonNull
-    private Iterable<Phone> iOSPhones;
-    @NonNull
+    private Iterable<Phone> iosPhones;
     private Iterable<Phone> amazonPhones;
 }
 
