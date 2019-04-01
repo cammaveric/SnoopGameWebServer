@@ -17,7 +17,7 @@ import java.util.Collections;
 @Controller
 public class UserController {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(8);
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(8);
 
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;

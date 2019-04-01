@@ -294,3 +294,12 @@ information that should help you find out what is causing the crash.
 2019-03-25T09:24:29.021336Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file 'C:\Users\Yanly\OneDrive\Documents\GitHub\SnoopGameWebServer\DataBase\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
 2019-03-25T09:25:52.482269Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
 2019-03-25T09:25:54.955366Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.12'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2019-03-29T11:49:30.901058Z 0 [System] [MY-013105] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Normal shutdown.
+2019-03-29T11:49:34.422279Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.12)  MySQL Community Server - GPL.
+2019-04-01T17:58:19.820103Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2019-04-01T17:58:19.847656Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.12) starting as process 4912
+2019-04-01T17:58:19.863128Z 0 [ERROR] [MY-010338] [Server] Can't find error-message file 'C:\Users\Yanly\OneDrive\Documents\GitHub\SnoopGameWebServer\DataBase\share\errmsg.sys'. Check error-message file location and 'lc-messages-dir' configuration directive.
+2019-04-01T17:58:24.242437Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2019-04-01T17:58:24.341318Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.12'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2019-04-01T19:01:17.541071Z 0 [System] [MY-013105] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Normal shutdown.
+2019-04-01T19:01:19.553795Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.12)  MySQL Community Server - GPL.

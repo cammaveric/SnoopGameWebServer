@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
+
 @RequestMapping("/employee")
 @Controller
 public class EmployeeController {
@@ -42,8 +41,8 @@ public class EmployeeController {
     public String removeEmployee(@PathVariable Employee employee, Model model) {
         Employee employeeFromDb = employeeRepository.findByNameAndSurnameAndMiddleName(employee.getName(),
                 employee.getSurname(), employee.getMiddleName());
-        ArrayList<Order> orders = (ArrayList<Order>) orderRepository.findByEmployeeAndStatuses(employeeFromDb,
-                Collections.singleton(Status.INITIATED));
+        ArrayList<Order> orders = (ArrayList<Order>) orderRepository
+                .findByEmployeeAndStatus(employeeFromDb, Status.INITIATED);
         if (orders.size() != 0) {
             model.addAttribute("message", "Employee don't returned all phones!");
             return "error";
@@ -52,9 +51,10 @@ public class EmployeeController {
         employeeRepository.delete(employeeFromDb);
         return "redirect:/employee";
     }
+
     @GetMapping
-    public String getEmployees(Model model){
-        model.addAttribute("employees",employeeRepository.findAllOrderBySurnameAsc());
+    public String getEmployees(Model model) {
+        model.addAttribute("employees", employeeRepository.findAllOrderBySurnameAsc());
         return "employee";
     }
 

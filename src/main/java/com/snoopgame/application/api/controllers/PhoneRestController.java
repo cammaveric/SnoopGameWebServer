@@ -6,6 +6,7 @@ import com.snoopgame.application.objectsForJSON.Phones;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 @RequestMapping("/api/phone")
 @RestController
 public class PhoneRestController {

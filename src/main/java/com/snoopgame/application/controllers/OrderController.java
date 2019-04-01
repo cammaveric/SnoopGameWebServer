@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
 import java.util.Optional;
 
 @Controller
@@ -22,15 +21,16 @@ public class OrderController {
     }
 
     @GetMapping
-    public String getOrders(Model model){
-        model.addAttribute("orders",orderRepository.findAllOrderByIdDesc());
+    public String getOrders(Model model) {
+        model.addAttribute("orders", orderRepository.findAllOrderByIdDesc());
         return "order";
     }
+
     @GetMapping("/remove/{order}")
-    public String deleteOrder(@PathVariable Order order,Model model){
-        Optional<Order> orderFromDb=orderRepository.findById(order.getId());
-        if (orderFromDb.get().getStatuses().equals(Collections.singleton(Status.INITIATED))){
-            model.addAttribute("message","Order not executed!");
+    public String deleteOrder(@PathVariable Order order, Model model) {
+        Optional<Order> orderFromDb = orderRepository.findById(order.getId());
+        if (orderFromDb.get().getStatus() == Status.INITIATED) {
+            model.addAttribute("message", "Order not executed!");
             return "error";
         }
         orderRepository.delete(order);

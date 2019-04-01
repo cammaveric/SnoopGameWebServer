@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Collections;
+
 @RequestMapping("/api/order")
 @RestController
 public class OrderRestController {
@@ -28,22 +27,19 @@ public class OrderRestController {
 
     @GetMapping("/getAll")
     public Orders sendAllOrders() {
-        Iterable<Order> orders = orderRepository.findByStatuses(Collections.singleton(Status.INITIATED));
-        return new Orders(orders,null,null);
+        Iterable<Order> orders = orderRepository.findByStatus(Status.INITIATED);
+        return new Orders(orders, null, null);
 
     }
 
     @GetMapping("/getByFirmware")
     public Orders sendOrders() {
-        Iterable<Order> androidOrders = orderRepository.findByPhoneInAndStatuses(
-                phoneRepository.findByFirmware_name("Android"),
-                Collections.singleton(Status.INITIATED));
-        Iterable<Order> iOSOrders = orderRepository.findByPhoneInAndStatuses(
-                phoneRepository.findByFirmware_name("iOS"),
-                Collections.singleton(Status.INITIATED));
-        Iterable<Order> amazonOrders = orderRepository.findByPhoneInAndStatuses(
-                phoneRepository.findByFirmware_name("Amazon"),
-                Collections.singleton(Status.INITIATED));
+        Iterable<Order> androidOrders = orderRepository.findByPhoneInAndStatus(
+                phoneRepository.findByFirmware_name("Android"), Status.INITIATED);
+        Iterable<Order> iOSOrders = orderRepository.findByPhoneInAndStatus(
+                phoneRepository.findByFirmware_name("iOS"), Status.INITIATED);
+        Iterable<Order> amazonOrders = orderRepository.findByPhoneInAndStatus(
+                phoneRepository.findByFirmware_name("Amazon"), Status.INITIATED);
         return new Orders(androidOrders, iOSOrders, amazonOrders);
 
     }
@@ -58,7 +54,7 @@ public class OrderRestController {
                 employeeRepository.findByNameAndSurnameAndMiddleName(
                         order.getEmployee().getName(), order.getEmployee().getSurname(),
                         order.getEmployee().getMiddleName()),
-                phone, Collections.singleton(Status.INITIATED)));
+                phone, Status.INITIATED));
         phone.setFree_phone_amount(phone.getFree_phone_amount() - 1);
         phoneRepository.save(phone);
 
@@ -73,8 +69,7 @@ public class OrderRestController {
                 employeeRepository.findByNameAndSurnameAndMiddleName(
                         order.getEmployee().getName(), order.getEmployee().getSurname(),
                         order.getEmployee().getMiddleName()), phone, order.getDate_start());
-        orderFromDb.getStatuses().removeAll(Collections.singleton(Status.INITIATED));
-        orderFromDb.getStatuses().addAll(Collections.singleton(Status.EXECUTED));
+        orderFromDb.setStatus(Status.EXECUTED);
         orderFromDb.setDate_end(new Date(System.currentTimeMillis()).toString() + " " + new Time(System.currentTimeMillis()).toString());
         phone.setFree_phone_amount(phone.getFree_phone_amount() + 1);
         orderRepository.save(orderFromDb);

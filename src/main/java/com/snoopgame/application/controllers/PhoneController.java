@@ -7,11 +7,12 @@ import com.snoopgame.application.Repositories.OrderRepository;
 import com.snoopgame.application.Repositories.PhoneRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 import java.util.Optional;
 
 @RequestMapping("/phone")
@@ -30,9 +31,11 @@ public class PhoneController {
         Phone phoneFromDb = phoneRepository.findByNameAndFirmware_nameAndFirmware_version(phone.getName(),
                 phone.getFirmware_name(), phone.getFirmware_version());
         if (phoneFromDb != null) {
-            model.addAttribute("message", "Phone already exists! The number of phones has been increased by " + phone.getAmount());
+            model.addAttribute("message",
+                    "Phone already exists! The number of phones has been increased by " + phone.getAmount());
             phoneFromDb.setAmount(phoneFromDb.getAmount() + phone.getAmount());
-            phoneFromDb.setFree_phone_amount(phoneFromDb.getFree_phone_amount() + phone.getFree_phone_amount());
+            phoneFromDb.setFree_phone_amount(
+                    phoneFromDb.getFree_phone_amount() + phone.getFree_phone_amount());
             phoneRepository.save(phoneFromDb);
             return "error";
         }
@@ -45,8 +48,8 @@ public class PhoneController {
     public String removePhone(@RequestParam Integer id, @RequestParam String delete_amount, Model model) {
         Optional<Phone> phoneFromDb = phoneRepository.findById(id);
         if (delete_amount.isEmpty()) {
-            ArrayList<Order> orders = (ArrayList<Order>) orderRepository.findByPhoneAndStatuses(phoneFromDb.get(),
-                    Collections.singleton(Status.INITIATED));
+            ArrayList<Order> orders = (ArrayList<Order>) orderRepository
+                    .findByPhoneAndStatus(phoneFromDb.get(), Status.INITIATED);
             if (orders.size() != 0) {
                 model.addAttribute("message", "Not executed orders contains this phone!");
                 return "error";
@@ -55,14 +58,17 @@ public class PhoneController {
             phoneRepository.delete(phoneFromDb.get());
             return "redirect:/phone";
         }
-        phoneFromDb.get().setAmount(phoneFromDb.get().getAmount() - Integer.parseInt(delete_amount));
-        phoneFromDb.get().setFree_phone_amount(phoneFromDb.get().getFree_phone_amount() - Integer.parseInt(delete_amount));
+        phoneFromDb.get().setAmount(
+                phoneFromDb.get().getAmount() - Integer.parseInt(delete_amount));
+        phoneFromDb.get().setFree_phone_amount(
+                phoneFromDb.get().getFree_phone_amount() - Integer.parseInt(delete_amount));
         phoneRepository.save(phoneFromDb.get());
         return "redirect:/phone";
     }
+
     @GetMapping
-    public String getPhones(Model model){
-        model.addAttribute("phones",phoneRepository.findAllOrderByFirmware_nameAsc());
+    public String getPhones(Model model) {
+        model.addAttribute("phones", phoneRepository.findAllOrderByFirmware_nameAsc());
         return "phone";
     }
 }
